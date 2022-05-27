@@ -1,0 +1,99 @@
+body{
+  background-color: #f5f4f5;
+}
+
+h2{
+    color: #385C7f;
+}
+
+h3{
+    color: #989898; 
+    font-style: normal;
+    margin-bottom: 0px; 
+    font-style: italic;
+}
+.contents-text{
+  background-color: #fff;
+  padding: 15px;
+}
+.headerBM{
+  color: #385C7f;
+}
+
+.contentBM{
+  color: #3c3c3c;
+  font-style: normal;
+  margin-bottom: 0px;
+}
+
+.contentEN{
+  color: #989898;
+  font-style: italic;
+}
+
+.btn-container{
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  width: 100%;
+  border: 1px solid #385C7f ;
+  border-radius: 40px;
+}
+
+button.btnNo {
+  color: white;
+  background-color: #385c7f;
+}
+
+button.btnYes {
+  background-color: #fff;
+  color: #385C7f;
+
+}
+
+.sidebar{
+  background-color: #546B81;
+  height: 100%;
+}
+
+.sidebar-img{
+  background-image: url("C:\Users\nur.wahidah_doctoron\Downloads\—Pngtree—green germ bacteria cartoon virus_5350446.png");
+    background-size: contain;
+    height: 100%;
+}
+.set-margin{
+    margin-top: 60px;
+}
+
+.section-display3{
+    font-style: italic;
+    color: #989898;
+}
+
+.section-display{
+    text-align: center;
+    padding: 0;
+}
+
+.section-display2{
+    padding: 0;
+}
+@media (max-width: 576px) {
+  .sidebar{
+  height: 300px;
+}
+.reverse-column{
+    flex-direction: column-reverse;
+}
+
+}

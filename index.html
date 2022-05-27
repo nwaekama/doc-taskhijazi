@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Task Hijazi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- section-display is for overall text display in column-md-7-->
+<!-- section-display2, for padding col-md-5 -->
+<!-- section-display3, to make <p> in eng content font color-grey and italic -->
+<body>
+        <div class="container">
+          <div class="row reverse-column">
+            <div class="col-md-7 section-display">
+              <div class="contents-text">
+               
+                <h2 class="headerBM set-margin">Kami Sedih Anda Tinggalkan Kami!</h2>
+                <h3 class="headerEN">Were Sad To See You Go</h3> 
+                
+                <p class="contentBM set-margin">Semua maklumat anda akan dipadam secara kekal dan ini tidak boleh dibatalkan . Anda juga tidak lagi akan tersenarai di dalam langganan emel kami.</p>
+                <p class="contentEN section-display3">All your records will be deleted permanently and this cannot be undone. You will be unsubscribe from our emailing list as well.</p>
+                
+                <p class="contentBM set-margin">Adakah anda pasti untuk memadam semua maklumat anda dari DoctorOnCall?</p>
+                <p class="contentEN section-display3">Are you sure to delete all records from DoctorOnCall?</p>
+                <div class="btn-container">
+                  <button onclick="googlePayload('No','file:///C:/Users/nur.wahidah_doctoron/Desktop/TASK/secondpage.html')"  class="btnNo btn" >Tidak / No</button>
+                  <button onclick="googlePayload('Yes','file:///C:/Users/nur.wahidah_doctoron/Desktop/TASK/thirdpage.html')"  class="btnYes btn">Ya / Yes</button>
+                </div>
+              </div>              
+            </div>
+
+            <div class="col-md-5 section-display2">
+              <div class="sidebar">
+                <div class="sidebar-img"></div>
+              </div>
+            </div>
+           </div>
+        </div>
+</body>
+<script>
+  let email = getEmail()
+
+  function getEmail(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const email = urlParams.get('email')
+    return email
+  }
+
+
+  function googlePayload(input,urlnext){
+    let resObject = {
+      email:getEmail(),
+      response:input
+    }
+    updateDatabase(JSON.stringify(resObject),urlnext)
+  }
+  function updateDatabase(input,urlnext){
+       
+  // posting to google sheet
+  let url = 'https://script.google.com/macros/s/AKfycbw5zwb8uLMWIFj1e5mdTuQw4jjyfwWSZYAh1RAT27Zsp7HTm-pu/exec'
+    AJAXRequest('POST',url, input,
+              function(res){
+                  // if posting is successful.
+                  console.log('success')
+                  console.log(res)
+                  //redirect user to another pg 
+                //console.log("here",urlnext)
+                  window.location.href = urlnext
+            
+
+              }, function(err){
+                  // if posting is failed
+                  console.log(err);
+          })
+  }
+    
+    function AJAXRequest(type,url,body,onsuccess,onerror){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+            if (xmlhttp.status == 200) {
+                onsuccess(JSON.parse(xmlhttp.responseText))
+            }
+            else if (xmlhttp.status == 400) {
+                onerror(xmlhttp.response)
+            }
+            else {
+                alert(xmlhttp.responseText);
+            }
+          }
+        };
+      xmlhttp.open(type,url,true);
+      var ajaxBody=body|| '';
+      xmlhttp.send(body);
+    }
+</script>
+
+</html>
